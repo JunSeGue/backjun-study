@@ -11,9 +11,8 @@ function solution(ingredient) {
                 stack[size - 3] === 2 &&
                 stack[size - 2] === 3 &&
                 stack[size - 1] === 1) {
-                for(let j = 0; j<4; j++) {
-                    stack.pop();
-                }
+                
+                stack.splice(size -4, 4)
                 answer++;
             }
         }
