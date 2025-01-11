@@ -1,9 +1,8 @@
+// refactor code
 function solution(array, commands) {
-    let answer = [];
-    
-    for(let i =0; i<commands.length; i++){
-        let changeArray = array.slice(commands[i][0]-1,commands[i][1]).sort((a,b) => a-b);
-        answer.push(changeArray[commands[i][2]-1]);
-    }
-    return answer;
+    return commands.map(command => {
+        let [start , end, position] = command;
+        let sortedArray = array.slice(start -1, end).sort((a,b) => a-b);
+        return sortedArray[position -1];
+    });
 }
