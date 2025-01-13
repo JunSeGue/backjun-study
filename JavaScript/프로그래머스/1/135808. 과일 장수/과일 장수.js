@@ -11,11 +11,12 @@ function solution(k, m, score) {
 */
 // code refactoring
 function solution(k, m, score) {    
-    // 1번 내림차순 정렬
-    score.sort((a,b) => b-a);
+    
+    score.sort((a,b) => b-a);       // 내림차순 정렬
+    
     return score.reduce((profit,_,i)=> {
-        if((i+1) % m === 0)
-            profit += score[i]*m;
+        if((i+1) % m === 0)         // 각 상자의 최솟값 찾기
+            profit += score[i]*m;   // 이익 계산
         return profit;
     },0)
 }
