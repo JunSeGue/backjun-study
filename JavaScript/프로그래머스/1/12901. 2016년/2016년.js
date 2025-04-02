@@ -1,21 +1,19 @@
 function solution(a, b) {
     const answer = '';
-    const days = ["SUN","MON","TUE","WED",
-                  "THU","FRI","SAT"]
-    const date = {
-        1:31, 2:29, 3:31,
-        4:30, 5:31, 6:30,
-        7:31, 8:31, 9:30,
-        10:31, 11:30, 12:31
-    }
+ const weekDays = ["SUN", "MON", "TUE", "WED", 
+                   "THU", "FRI", "SAT"];
+    const monthDays = [31, 29, 31, 30, 31, 30, 
+                       31, 31, 30, 31, 30, 31];
     
-    let sum =0;
-    for(let i = 1; i<a; i++) {
-        sum += date[i];
-    }
-    sum += b + 4
-    const index = sum % 7;
+    // let sum =0;
+    // for(let i = 1; i<a; i++) {
+    //     sum += monthDays[i];
+    // }
+    // sum += b + 4
     
+    const sum = monthDays
+    .slice(0, a-1)
+    .reduce((acc, days) => acc + days, 0) + b + 4;
     
-    return days[index];
+    return weekDays[sum % 7];
 }
