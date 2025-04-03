@@ -1,15 +1,19 @@
 function solution(wallpaper) {
 
-    let answer = [50, 50, 0, 0];
-    for(let i = 0; i<wallpaper.length; i++) {
-        for(let j=0; j<wallpaper[i].length; j++){
-            if(wallpaper[i].charAt(j) === '#') {
-                    answer[0] = Math.min(answer[0], i);
-                    answer[1] = Math.min(answer[1], j);
-                    answer[2] = Math.max(answer[2], i+1);
-                    answer[3] = Math.max(answer[3], j+1);
-                }
+    let [minX, minY, maxX, maxY] 
+    = [Infinity, Infinity, -Infinity, -Infinity]
+   
+    wallpaper.forEach((row, i) => {
+        for (let j = 0; j < row.length; j++) {
+            if (row[j] === "#") {
+                minX = Math.min(minX, i);
+                minY = Math.min(minY, j);
+                maxX = Math.max(maxX, i + 1);
+                maxY = Math.max(maxY, j + 1);
+            }
         }
-    }
-    return answer
+
+   })
+
+    return [minX, minY, maxX, maxY];
 }
