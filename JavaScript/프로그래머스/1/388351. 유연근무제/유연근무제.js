@@ -2,19 +2,16 @@ function solution(schedules, timelogs, startday) {
     let answer = 0;
     
     for (let i =0; i <schedules.length; i++) {
-        const timelog = timelogs[i];
-        const schedule = getSchedule(schedules[i]);
+        const limitTime = getLimitTime(schedules[i]);
         let day = startday;
         
         
-        for (let t of timelog) {
-            if (day % 7 === 0 || day % 7 === 6) {
+        for (const timelog of timelogs[i]) {
+            if (isWeekend(day)){
                 day++;
                 continue;
             }
-            if (t > schedule) {
-                break;
-            }
+            if (timelog > limitTime) break;
             day++;
         }
         if(day === startday +7) {
@@ -24,13 +21,19 @@ function solution(schedules, timelogs, startday) {
     return answer;
 }
 
-const getSchedule = (schedule) => {
-    schedule += 10;
+const getLimitTime = (time) => {
+    time += 10;
+
+    let hour = Math.floor(time / 100);
+    let minute = time % 100;
         
-    if (schedule % 100 >= 60) {
-        let h = Math.floor(schedule / 100) + 1;
-        let m = (schedule % 100) - 60;
-        schedule = (h*100)+m;
+    if (minute >= 60) {
+        return (hour + 1) * 100 + (minute - 60);
     }
-    return schedule;
+    return time;
+}
+
+const isWeekend = (day) => {
+    const dayOfWeek = day % 7;
+    return dayOfWeek === 0 || dayOfWeek === 6;
 }
