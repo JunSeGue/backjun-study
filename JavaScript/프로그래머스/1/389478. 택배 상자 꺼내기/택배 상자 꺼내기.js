@@ -4,15 +4,11 @@ function solution(n, w, num) {
     
     if (limitY === targetY) return 1;
 
-    const isLimitReverse = limitY % 2 === 0;
-    const isTargetReverse = targetY % 2 === 0;
-
-    let limitX = n % w === 0 ? w: n % w;
-    let targetX = num % w === 0 ? w : num % w;
+    let limitX = n % w || w;
+    let targetX = num % w || w;
     
-    const isSameReverse = isTargetReverse === isLimitReverse;
+    const isSameReverse = (limitY % 2) === (targetY % 2);
     const isTargetFarther = limitX >= targetX;
-    console.log(isTargetFarther);
     const isTargetCloser = w - limitX <= targetX;
     
     const result = limitY - targetY;
