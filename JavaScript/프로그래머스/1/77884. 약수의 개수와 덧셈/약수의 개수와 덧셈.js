@@ -15,6 +15,7 @@
 //     return answer;
 // }
 
+// 완전 제곱수 일 경우 제곱근 갯수 홀수
 function solution(left, right) {
     let answer = 0;
     
