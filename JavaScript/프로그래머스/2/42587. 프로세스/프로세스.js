@@ -1,16 +1,16 @@
 function solution(priorities, location) {
-    let queue = priorities.map((priority, index)=> [index, priority]);
-    let count = 0;
-        
-    while (queue.length > 0) {
-        let currentProcess = queue.shift();
-        let hasHigherPriority = queue.some(process => process[1] > currentProcess[1]);
-        
-        if(hasHigherPriority) {
-          queue.push(currentProcess);  
+    const queue = priorities.map((priority, index) => ({ index, priority }));
+    let order = 0;
+
+    while (queue.length) {
+        const process = queue.shift();
+        const hasHigherPriority = queue.some(({ priority }) => priority > process.priority);
+
+        if (hasHigherPriority) {
+            queue.push(process);
         } else {
-            count++;
-            if(currentProcess[0] === location) return count;
+            order++;
+            if (process.index === location) return order;
         }
     }
-} 
+}
