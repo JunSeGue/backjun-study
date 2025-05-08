@@ -4,11 +4,10 @@ function solution(s) {
     for (let char of s) {
         if (char === '(') {
             stack.push(char);
-        } else { // char === ')'
-            if (stack.length === 0) {
-                return false;
-            }
-            stack.pop();
+        } else if (stack.length){
+             stack.pop();
+        } else {
+            return false;
         }
     }
 
